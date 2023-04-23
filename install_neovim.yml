@@ -6,6 +6,11 @@
 
   tasks:
 
+  - name: Ensure /opt/neovim does not exists
+    file:
+      path: /opt/neovim
+      state: absent
+
   - name: Download and extract neovim tar file
     unarchive:
       src: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz

@@ -1,0 +1,31 @@
+# https://github.com/ThePrimeagen/ansible/blob/master/local.yml
+
+- hosts: localhost
+  become: true
+  vars:
+    source_key: "./.ssh/id_rsa"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    personal: "{{ lookup('env', 'HOME') }}/personal"
+  pre_tasks:
+  - name: Update Apt
+    apt:
+      force_apt_get: true
+      update_cache: true
+      state: present
+    tags:
+      - install
+      - core
+  tasks:
+  - ansible.builtin.import_tasks: tasks/ssh.yml
+  - ansible.builtin.import_tasks: tasks/git-setup.yml
+  - ansible.builtin.import_tasks: tasks/core-setup.yml
+      #    - include: tasks/node-setup.yml
+      #    - include: tasks/npm-packages.yml
+      #    - include: tasks/zsh-setup.yml
+      #    - include: tasks/personal-projects.yml
+  - ansible.builtin.import_tasks: tasks/nvim-setup.yml
+      #    - include: tasks/debugger.yml
+  - ansible.builtin.import_tasks: tasks/dotfiles.yml
+      #    - include: tasks/productivity-tools.yml
+      #    - include: tasks/lsp.yml
+

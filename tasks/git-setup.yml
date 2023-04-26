@@ -1,0 +1,33 @@
+
+- name: Git personal setup email
+  git_config:
+    name: user.email
+    scope: global
+    value: "danialhanif@outlook.com"
+  tags:
+  - git-personal
+
+- name: Git personal setup name
+  git_config:
+    name: user.name
+    scope: global
+    value: "hambergerpls"
+  tags:
+  - git-personal
+
+- name: Git moisystems setup name
+  git_config:
+    name: user.name
+    scope: global
+    value: "Danial Hanif"
+  tags:
+  - git-moisystems
+
+- name: MOI-Systems
+  git_config:
+    name: user.email
+    scope: global
+    value: "danial@moisystems.com"
+  tags:
+  - git-moisystems
+

@@ -1,15 +1,23 @@
 - name: Install ZSH
+  become: true
   apt: name=zsh
   tags: &tags_for_zsh_tasks [ 'install', 'productivity', 'dotfiles', 'zsh' ]
     
-- name: Change shell to zsh
-  shell: chsh -s $(which zsh)
+- name: Set login shell to zsh
+  shell: usermod --shell /bin/zsh hambergerpls
+  become: true
   tags: *tags_for_zsh_tasks
 
-- name: Check that the somefile.conf exists
+- name: Check that .oh-my-zsh exists
   stat:
     path: /home/hambergerpls/.oh-my-zsh
   register: oh_my_stats
+  tags: *tags_for_zsh_tasks
+
+- name: Check that starship.toml exists
+  stat:
+    path: /home/hambergerpls/.config/starship.toml
+  register: starship_toml
   tags: *tags_for_zsh_tasks
 
 - name: Oh-My-Zsh
@@ -22,4 +30,19 @@
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
     dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+  tags: *tags_for_zsh_tasks
+
+- name: Download starship
+  shell: curl -sS https://starship.rs/install.sh > ~/.starship-installer && chmod +x ~/.starship-installer
+  tags: *tags_for_zsh_tasks
+
+- name: Install starship
+  expect:
+    command: sh /home/hambergerpls/.starship-installer
+    responses:
+      y/N: 'y'
+      (?i)password: "{{ ansible_become_password }}"
+  become: true
+  become_user: hambergerpls
+  when: starship_toml.stat.exists == False
   tags: *tags_for_zsh_tasks

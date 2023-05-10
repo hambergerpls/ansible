@@ -1,0 +1,24 @@
+
+- name: Download chrome
+  ansible.builtin.get_url: 
+    url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
+    dest: "{{ lookup('env', 'HOME') }}/google-chrome-stable_current_amd64.deb"
+  tags:
+    - install
+    - chrome
+
+- name: Install prerequisites for Ansible to install .deb via apt module
+  become: true
+  apt:
+    name:
+    - xz-utils
+  tags:
+    - chrome
+
+- name: Install Chrome 
+  become: true
+  apt:
+    deb: "{{ lookup('env', 'HOME') }}/google-chrome-stable_current_amd64.deb"
+  tags:
+    - install
+    - chrome

@@ -1,0 +1,20 @@
+
+- name: Remove flutter
+  shell: rm -rf ~/flutter
+  tags:
+    - install
+    - flutter
+
+- name: Clone Flutter
+  ansible.builtin.git:
+    repo: 'https://github.com/flutter/flutter.git'
+    dest: "{{ lookup('env', 'HOME') }}/flutter"
+  tags:
+    - install
+    - flutter
+
+- name: Run flutter doctor 
+  shell: "{{ lookup('env', 'HOME') }}/flutter/bin/flutter doctor"
+  tags:
+    - install
+    - flutter

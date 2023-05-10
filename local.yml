@@ -27,6 +27,8 @@
   - ansible.builtin.import_tasks: tasks/zsh-setup.yml
       #    - include: tasks/personal-projects.yml
   - ansible.builtin.import_tasks: tasks/nvim-setup.yml
+  - ansible.builtin.import_tasks: tasks/chrome-setup.yml
+  - ansible.builtin.import_tasks: tasks/flutter-setup.yml
       #    - include: tasks/debugger.yml
   - ansible.builtin.import_tasks: tasks/dotfiles.yml
       #    - include: tasks/productivity-tools.yml

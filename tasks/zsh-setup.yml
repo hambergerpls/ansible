@@ -24,9 +24,8 @@
     responses:
       y/N: 'y'
       (?i)password: "{{ ansible_become_password }}"
+    timeout: 300
   become: true
   become_user: hambergerpls
-  async: 300
-  poll: 10
   when: starship_toml.stat.exists == False
   tags: *tags_for_zsh_tasks

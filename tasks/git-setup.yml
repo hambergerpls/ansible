@@ -1,4 +1,16 @@
 
+- name: Setup gpg
+  git_config:
+    name: user.signingkey
+    scope: global
+    value: 339B5F003357AAF002299F3A220DB13254D260F8
+
+- name: gpg sign
+  git_config:
+    name: commit.gpgsign
+    scope: global
+    value: true
+
 - name: Git personal setup email
   git_config:
     name: user.email

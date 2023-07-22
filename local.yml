@@ -6,6 +6,7 @@
     source_key: "./.ssh/id_rsa"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     personal: "{{ lookup('env', 'HOME') }}/personal"
+    gpg_key_src: "./.gnupg/gpg-key.asc"
   vars_files:
     - "./vars/secrets.yml"
   pre_tasks:
@@ -19,6 +20,7 @@
       - install
       - core
   tasks:
+  - ansible.builtin.import_tasks: tasks/gpg-setup.yml
   - ansible.builtin.import_tasks: tasks/ssh.yml
   - ansible.builtin.import_tasks: tasks/git-setup.yml
   - ansible.builtin.import_tasks: tasks/core-setup.yml

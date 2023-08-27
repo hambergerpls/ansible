@@ -1,6 +1,7 @@
+
 - name: Import GPG key file
   gpg:
-    key_file: "{{ gpg_key_src }}"
+    key_file: {{ gpg_key_src }}
     key_type: private
     state: latest
   tags:

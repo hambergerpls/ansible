@@ -26,8 +26,8 @@
   - ansible.builtin.import_tasks: tasks/ssh.yml
   - ansible.builtin.import_tasks: tasks/git-setup.yml
   - ansible.builtin.import_tasks: tasks/core-setup.yml
-      #    - include: tasks/node-setup.yml
-      #    - include: tasks/npm-packages.yml
+  - ansible.builtin.import_tasks: tasks/node-setup.yml
+  - ansible.builtin.import_tasks: tasks/npm-packages.yml
   - ansible.builtin.import_tasks: tasks/zsh-setup.yml
       #    - include: tasks/personal-projects.yml
   - ansible.builtin.import_tasks: tasks/nvim-setup.yml

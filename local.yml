@@ -22,19 +22,20 @@
       - install
       - core
   tasks:
-  - ansible.builtin.import_tasks: tasks/gpg-setup.yml
-  - ansible.builtin.import_tasks: tasks/ssh.yml
-  - ansible.builtin.import_tasks: tasks/git-setup.yml
   - ansible.builtin.import_tasks: tasks/core-setup.yml
+  - ansible.builtin.import_tasks: tasks/ssh.yml
+  - ansible.builtin.import_tasks: tasks/gpg-setup.yml
+  - ansible.builtin.import_tasks: tasks/git-setup.yml
+  - ansible.builtin.import_tasks: tasks/zsh-setup.yml
+  - ansible.builtin.import_tasks: tasks/dotfiles.yml
   - ansible.builtin.import_tasks: tasks/node-setup.yml
   - ansible.builtin.import_tasks: tasks/npm-packages.yml
-  - ansible.builtin.import_tasks: tasks/zsh-setup.yml
-      #    - include: tasks/personal-projects.yml
   - ansible.builtin.import_tasks: tasks/nvim-setup.yml
   - ansible.builtin.import_tasks: tasks/chrome-setup.yml
   - ansible.builtin.import_tasks: tasks/flutter-setup.yml
+  - ansible.builtin.import_tasks: tasks/sway-setup.yml
+      #    - include: tasks/personal-projects.yml
       #    - include: tasks/debugger.yml
-  - ansible.builtin.import_tasks: tasks/dotfiles.yml
       #    - include: tasks/productivity-tools.yml
       #    - include: tasks/lsp.yml
 

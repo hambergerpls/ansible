@@ -1,0 +1,22 @@
+- name: Install sway and wireplumber
+  become: true
+  apt:
+    name: ["sway", "wireplumber", "pipewire-media-session-", "pipewire-audio-client-libraries"]
+  tags:
+    - sway
+  
+- name: Copy default config
+  become: true
+  ansible.builtin.copy: 
+    src: /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf
+    dest: /etc/alsa/conf.d/99-pipewire-default.conf
+  tags:
+    - sway
+
+- name: Enable wireplumber
+  ansible.builtin.systemd:
+    name: wireplumber
+    enabled: true
+    state: started
+  tags:
+    - sway

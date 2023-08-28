@@ -1,0 +1,24 @@
+
+- name: Download vivaldi
+  ansible.builtin.get_url: 
+    url: https://downloads.vivaldi.com/stable/vivaldi-stable_6.1.3035.302-1_amd64.deb
+    dest: "{{ lookup('env', 'HOME') }}/vivaldi-stable_current_amd64.deb"
+  tags:
+    - install
+    - vivaldi
+
+- name: Install prerequisites for Ansible to install .deb via apt module
+  become: true
+  apt:
+    name:
+    - xz-utils
+  tags:
+    - vivaldi
+
+- name: Install Chrome 
+  become: true
+  apt:
+    deb: "{{ lookup('env', 'HOME') }}/vivaldi-stable_current_amd64.deb"
+  tags:
+    - install
+    - vivaldi

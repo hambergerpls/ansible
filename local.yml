@@ -31,8 +31,9 @@
   - ansible.builtin.import_tasks: tasks/node-setup.yml
   - ansible.builtin.import_tasks: tasks/npm-packages.yml
   - ansible.builtin.import_tasks: tasks/nvim-setup.yml
-  - ansible.builtin.import_tasks: tasks/chrome-setup.yml
   - ansible.builtin.import_tasks: tasks/flutter-setup.yml
+  - ansible.builtin.import_tasks: tasks/chrome-setup.yml
+  - ansible.builtin.import_tasks: tasks/vivaldi-setup.yml
   - ansible.builtin.import_tasks: tasks/sway-setup.yml
       #    - include: tasks/personal-projects.yml
       #    - include: tasks/debugger.yml
